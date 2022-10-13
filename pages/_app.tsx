@@ -1,8 +1,8 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
-}
 
-export default MyApp
+const ShiftioApp = ({ Component, pageProps }: AppProps) => (
+      <h1>Shift.io</h1>
+);
+
+export default ShiftioApp;
