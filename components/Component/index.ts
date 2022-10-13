@@ -1,0 +1,1 @@
+export { __Component__ } from './Component';
