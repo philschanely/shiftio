@@ -51,16 +51,8 @@ export const ShiftAssignmentModal: FunctionComponent<ShiftAssignmentModalProps> 
         });
       }
 
-      console.log(errors);
-
       return errors;
     }}
-    // validationSchema={Yup.object().shape({
-    //   shift: Yup.number()
-    //     .required('Must select a shift'),
-    //   nurse: Yup.number()
-    //     .required('Must select a nurse'),
-    // })}
   >
     {props => (
       <form onSubmit={props.handleSubmit}>
@@ -70,7 +62,6 @@ export const ShiftAssignmentModal: FunctionComponent<ShiftAssignmentModalProps> 
             <>
               <Button
                 disabled={!props.dirty || !props.isValid}
-                onClick={() => console.log('click')}
                 type="submit"
                 color="primary"
               >

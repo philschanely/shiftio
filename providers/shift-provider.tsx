@@ -64,7 +64,7 @@ export const ShiftProvider = ({ children }: ShiftProviderProps) => {
   };
 
   const validateAssignment = ({ nurseId, shiftId }: { nurseId: number, shiftId: number }) => {
-    const errors = {};
+    const errors: { nurse?: string; shift?: string } = {};
     const shift = getShift(shiftId);
     const nurse = getNurse(nurseId);
     if (!nurse || !shift) {
@@ -73,8 +73,6 @@ export const ShiftProvider = ({ children }: ShiftProviderProps) => {
 
     const nurseLevel = getQualificationLevel(nurse.qualification);
     const shiftLevel = getQualificationLevel(shift.qualification);
-
-    console.log('validating nurse and shift', shiftLevel, nurseLevel);
 
     // TODO: Validate nurse's qualification against shift qualification
     if (shiftLevel > nurseLevel) {
