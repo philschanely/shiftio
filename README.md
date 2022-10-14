@@ -1,4 +1,6 @@
-Welcome to Shiftio a demo shift scheduling app! This application is built with Next.js and stubbed data from a Express server.
+# Shift.io
+
+Welcome to Shift.io a demo shift scheduling app! This application is built with Next.js and stubbed data from an Express server.
 
 You can view the app locally as follows:
 
