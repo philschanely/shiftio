@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app'
 import styled from 'styled-components';
+import { NurseProvider, ShiftProvider } from '../providers';
 import { Functions, Tokens } from '../styles';
 
 const { rem } = Functions;
@@ -43,15 +44,19 @@ const StyledAppFooter = styled.footer`
 
 const ShiftioApp = ({ Component, pageProps }: AppProps) => (
   <StyledApp>
-    <StyledAppHeader>
-      <h1>Shift.io</h1>
-    </StyledAppHeader>
-    <main>
-      <Component {...pageProps} />
-    </main>
-    <StyledAppFooter>
-      <p>Copyright &copy; 2022 by Phil Schanely. All rights reserved.</p>
-    </StyledAppFooter>
+    <NurseProvider>
+      <ShiftProvider>
+        <StyledAppHeader>
+          <h1>Shift.io</h1>
+        </StyledAppHeader>
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <StyledAppFooter>
+          <p>Copyright &copy; 2022 by Phil Schanely. All rights reserved.</p>
+        </StyledAppFooter>
+      </ShiftProvider>
+    </NurseProvider>
   </StyledApp>
 );
 

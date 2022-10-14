@@ -1,39 +1,39 @@
-export type Qualifications = 'RM' | 'LPN' | 'CNA';
+export type Qualifications = 'RN' | 'LPN' | 'CNA';
 
 export type APINurse = {
-  email: String;
-  first_name: String;
+  email: string;
+  first_name: string;
   id: Number;
-  last_name: String;
+  last_name: string;
   qualification: Qualifications;
-  username: String;
+  username: string;
 }
 
 export type APIShift = {
-  end: String;
+  end: string;
   id: Number;
-  name: String;
+  name: string;
   nurse_id: Number | null;
   qual_required: Qualifications;
-  start: String;
+  start: string;
 }
 
 export type Nurse = {
-  email: String;
-  firstName: String;
+  email: string;
+  firstName: string;
   id: Number;
-  lastName: String;
+  lastName: string;
   qualification: Qualifications;
-  username: String;
-  displayName: String;
+  username: string;
+  displayName: string;
 }
 
 export type Shift = {
-  end: String;
+  end: string;
   id: Number;
-  name: String;
+  name: string;
   nurse: Nurse | null;
   qualification: Qualifications;
-  shift: String;
-  start: String;
+  shift: string;
+  start: string;
 }

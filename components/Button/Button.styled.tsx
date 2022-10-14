@@ -66,6 +66,11 @@ export const StyledButton = styled.button`
   gap: ${rem(8)};
   color: white;
 
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
   &:focus {
     --button-background-color: ${styledButtonBackgroundColor};
     
