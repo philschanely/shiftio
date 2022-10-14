@@ -1,4 +1,4 @@
-export type Qualifications = 'RM' | 'LPN' | 'CNA';
+export type Qualifications = 'RN' | 'LPN' | 'CNA';
 
 export type APINurse = {
   email: String;

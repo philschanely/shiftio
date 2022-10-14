@@ -42,23 +42,25 @@ export const ShiftAssignmentModal: FunctionComponent<ShiftAssignmentModalProps> 
     }}
     validate={(values) => {
       const { nurse, shift } = values;
-      const errors = {};
+      let errors = {};
 
       if (nurse && shift) {
-        validateAssignment({
+        errors = validateAssignment({
           nurseId: Number(nurse),
           shiftId: Number(shift),
         });
       }
 
+      console.log(errors);
+
       return errors;
     }}
-    validationSchema={Yup.object().shape({
-      shift: Yup.number()
-        .required('Must select a shift'),
-      nurse: Yup.number()
-        .required('Must select a nurse'),
-    })}
+    // validationSchema={Yup.object().shape({
+    //   shift: Yup.number()
+    //     .required('Must select a shift'),
+    //   nurse: Yup.number()
+    //     .required('Must select a nurse'),
+    // })}
   >
     {props => (
       <form onSubmit={props.handleSubmit}>
@@ -86,7 +88,7 @@ export const ShiftAssignmentModal: FunctionComponent<ShiftAssignmentModalProps> 
         >
           <FormFieldGroup>
             <FormField
-              error={props.touched.shift && props.errors.shift}
+              error={props.errors.shift}
               labelFor="shift"
               label="Shift"
             >
@@ -105,7 +107,7 @@ export const ShiftAssignmentModal: FunctionComponent<ShiftAssignmentModalProps> 
               </select>
             </FormField>
             <FormField
-              error={props.touched.shift && props.errors.shift}
+              error={props.errors.nurse}
               labelFor="nurse"
               label="Nurse"
             >

@@ -1,7 +1,7 @@
 import { useState, createContext, useContext, useEffect } from 'react';
 import type { Dispatch, ReactNode, SetStateAction } from 'react';
 import { ShiftService } from '../services';
-import { Shift } from '../types';
+import { Qualifications, Shift } from '../types';
 import { useNurses } from '.';
 
 export type ShiftProviderProps = {
@@ -47,15 +47,46 @@ export const ShiftProvider = ({ children }: ShiftProviderProps) => {
   const [shiftsLoading, setShiftsLoading] = useState<boolean>(true);
   const [activeShift, setActiveShift] = useState<Shift | null>(null);
 
+  const getNurse = (nurseId: number) => nurses?.filter(({ id }) => id === nurseId)[0];
+  const getShift = (shiftId: number) => shifts?.filter(({ id }) => id === shiftId)[0];
+
+  const getQualificationLevel = (qualification: Qualifications) => {
+    switch (qualification) {
+      case 'CNA':
+        return 1;
+      case 'LPN':
+        return 2;
+      case 'RN':
+        return 3;
+      default:
+        return 0;
+    }
+  };
+
   const validateAssignment = ({ nurseId, shiftId }: { nurseId: number, shiftId: number }) => {
-    console.log('validating nurse and shift', nurseId, shiftId);
+    const errors = {};
+    const shift = getShift(shiftId);
+    const nurse = getNurse(nurseId);
+    if (!nurse || !shift) {
+      return false;
+    }
+
+    const nurseLevel = getQualificationLevel(nurse.qualification);
+    const shiftLevel = getQualificationLevel(shift.qualification);
+
+    console.log('validating nurse and shift', shiftLevel, nurseLevel);
+
     // TODO: Validate nurse's qualification against shift qualification
+    if (shiftLevel > nurseLevel) {
+      errors.nurse = 'This nurse is not qualified to work this shift';
+    }
+
     // TODO: Validate nurse's availability
-    return true;
+    return errors;
   };
 
   const saveAssignment = async ({ nurseId, shiftId }: { nurseId: number, shiftId: number }) => {
-    const selectedNurse = nurses?.filter(({ id }) => id === nurseId)[0];
+    const selectedNurse = getNurse(nurseId);
     const newShifts = shifts?.map(shift => {
       if (shift.id === shiftId) {
         shift.nurse = selectedNurse || null;
