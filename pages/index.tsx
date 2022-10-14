@@ -6,7 +6,13 @@ import { ShiftTable, ShiftAssignmentModal } from './components';
 import { useNurses, useShifts } from '../providers';
 
 const HomePage: NextPage = () => {
-  const { shifts, activeShift, setActiveShift } = useShifts();
+  const {
+    shifts,
+    activeShift,
+    saveAssignment,
+    setActiveShift,
+    validateAssignment,
+  } = useShifts();
   const { nurses, activeNurse } = useNurses();
   const [showAssignmentsModal, setShowAssignmentsModal] = useState(false);
 
@@ -21,6 +27,11 @@ const HomePage: NextPage = () => {
     setShowAssignmentsModal(true);
   };
 
+  const closeAssignmentsModal = () => {
+    setShowAssignmentsModal(false);
+    setActiveShift(null);
+  };
+
   return (
     <>
       <Head>
@@ -30,12 +41,14 @@ const HomePage: NextPage = () => {
       </Head>
       <ShiftAssignmentModal
         active={showAssignmentsModal}
-        onClose={() => setShowAssignmentsModal(false)}
-        onDismiss={() => setShowAssignmentsModal(false)}
         activeNurse={activeNurse}
         activeShift={activeShift}
+        onClose={closeAssignmentsModal}
+        onDismiss={closeAssignmentsModal}
         nurses={nurses}
+        saveAssignment={saveAssignment}
         shifts={shifts}
+        validateAssignment={validateAssignment}
       />
       <ShiftTable handleAssignNurse={handleAssignNurse} />
     </>

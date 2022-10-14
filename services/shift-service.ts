@@ -36,3 +36,16 @@ export const getAll = async (nurses: Nurse[] = []): Promise<Shift[] | void> => {
     console.error(error);
   }
 };
+
+export const save = async ({ nurseId, shiftId }: { nurseId: number, shiftId: number }): Promise<boolean> => {
+  try {
+    const response = await axios.put(
+      `http://localhost:9001/shifts/${shiftId}`,
+      { nurseID: nurseId }
+    );
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
