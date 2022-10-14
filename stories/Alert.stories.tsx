@@ -9,7 +9,7 @@ export default {
 
 const Template: ComponentStory<typeof Alert> = (args) => <Alert {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Demo = Template.bind({});
+Demo.args = {
   children: 'Alert',
 };

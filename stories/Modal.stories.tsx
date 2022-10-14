@@ -9,7 +9,12 @@ export default {
 
 const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  children: 'Modal',
+export const Demo = Template.bind({});
+Demo.args = {
+  active: true,
+  children: (
+    <p>Modal content goes here</p>
+  ),
+  header: "Modal header",
+  id: "demo-modal",
 };
