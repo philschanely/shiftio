@@ -45,8 +45,8 @@ export const ShiftTable: FunctionComponent<ShiftTableProps> = ({ handleAssignNur
           id,
           data: {
             shift,
-            start,
-            end,
+            start: start.toFormat('L/d/yy h:mm:ss a'),
+            end: end.toFormat('L/d/yy h:mm:ss a'),
             qualification,
             nurse: nurse?.displayName || (
               <Button onClick={() => handleAssignNurse(id)}>Assign</Button>
